@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 // basic structure 
 var users = [{
-    bid: 1,
     userName: "Kartik",
     bhakti: true,
     kidenys: [{
@@ -17,12 +16,11 @@ var users = [{
         healthy: true
     },
     Bones:[{
-        currnt: false,
+        current: false,
         brokenPast: 3,
         plastered: 5
     }]
 },{
-    bid: 2,
     userName: "Ujjwal",
     bhakti: false,
     kidenys: [{
@@ -38,11 +36,35 @@ var users = [{
         brokenPast: 2,
         plastered: 3
     }]
+},{
+    userName: "Annie",
+    bhakti: true,
+    kidenys: [{
+        healthy: true
+    },{
+        healthy: true
+    }],
+    heart: {
+        healthy: true
+    },
+    Bones:[{
+        current: false,
+        brokenPast: 0,
+        plastered: 0
+    }]
 }];
 
-function health(id){
-    
-    
+function bones(id, health){
+    const bones = users[id].Bones[0]
+    if(bones.brokenPast == 0){
+        return health + 10
+    }else if(bones.brokenPast > 0 && bones.brokenPast <= 2){
+        return health + 7;
+    }else if(bones.brokenPast > 2 && bones.brokenPast <= 5){
+        return health + 5;
+    }else{
+        return health + 3;
+    }
 }
 
 app.get("/", function(req,res){
@@ -57,23 +79,33 @@ app.get('/getUser', function(req,res){
 app.get('/healtReport', function(req,res){
     // the function is to calculate the health %age of the user,
     // we have the data of kidney, heart and bones
-    // we will give 20 marks for each kidney, 30 for heart and 20 for bhakti, and 10 for bones
+    // we will give 30 marks for each kidney, 50 for heart and 20 for bhakti, and 10 for bones
     // for each broken bone in the past we will deduct 0.0048543689320388349514 marks
     var health = 0;
     const id = req.query.id;
-    if(users[id].bhakti){
-        health += 10;
+    const user = users[id];
+    const kideny = user.kidenys;
+    const Bones = user.Bones[0]
+    const bonesCurrent = Bones.current;
+    const bonesPlastered = Bones.plastered;
+    if (user.bhakti){
+        health += 20;
     }
-    for(let i=0; i<users[id].kidenys.length; i++){
-        if(users[id].kidenys[id].healthy){
-            health += 20;
+    for(let i = 0; i < kideny.length; i++){
+        if(kideny[i]){
+            health += 50;
         }
     }
-    if(!users[id].Bones.current){
-        health += 10;
-        health -= users[id].Bones.brokenPast*0.0048543689320388349514;
+    if(bonesCurrent){
+        health -= 20;
     }
-    return  health
+    health = bones(id,health);
+    health = health - bonesPlastered * 2;
+    const healtPercent = health / 1.3;
+    res.json({health: health.toString(),
+        HealthPercentage : healtPercent.toString()
+        ,user: user
+    });
 });
 
 app.listen(port, function(){
