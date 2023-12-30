@@ -1,0 +1,29 @@
+users (Array)
+|
+|--- [0] (Object)
+     |
+     |--- bid: 1
+     |--- userName: "Kartik"
+     |--- bhakti: true
+     |
+     |--- kidenys (Array)
+     |    |
+     |    |--- [0] (Object)
+     |    |    |
+     |    |    |--- healthy: true
+     |    |
+     |    |--- [1] (Object)
+     |         |
+     |         |--- healthy: true
+     |
+     |--- heart (Object)
+     |    |
+     |    |--- healthy: true
+     |
+     |--- Bones (Array)
+          |
+          |--- [0] (Object)
+               |
+               |--- currnt: false
+               |--- brokenPast: 3
+               |--- plastered: 5
