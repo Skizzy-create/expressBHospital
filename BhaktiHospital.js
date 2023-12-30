@@ -79,7 +79,7 @@ app.get('/getUser', function(req,res){
 app.get('/healtReport', function(req,res){
     // the function is to calculate the health %age of the user,
     // we have the data of kidney, heart and bones
-    // we will give 20 marks for each kidney, 30 for heart and 20 for bhakti, and 10 for bones
+    // we will give 30 marks for each kidney, 50 for heart and 20 for bhakti, and 10 for bones
     // for each broken bone in the past we will deduct 0.0048543689320388349514 marks
     var health = 0;
     const id = req.query.id;
@@ -93,7 +93,7 @@ app.get('/healtReport', function(req,res){
     }
     for(let i = 0; i < kideny.length; i++){
         if(kideny[i]){
-            health += 30;
+            health += 50;
         }
     }
     if(bonesCurrent){
@@ -101,7 +101,11 @@ app.get('/healtReport', function(req,res){
     }
     health = bones(id,health);
     health = health - bonesPlastered * 2;
-    res.json({health: health.toString(),user: user});
+    const healtPercent = health / 1.3;
+    res.json({health: health.toString(),
+        HealthPercentage : healtPercent.toString()
+        ,user: user
+    });
 });
 
 app.listen(port, function(){
