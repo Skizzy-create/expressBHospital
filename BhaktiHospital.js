@@ -37,7 +37,7 @@ var users = [{
         plastered: 3
     }]
 },{
-    userName: "Annie",
+    userName: "Madhav",
     bhakti: true,
     kidenys: [{
         healthy: true
@@ -107,6 +107,10 @@ app.get('/healtReport', function(req,res){
         ,user: user
     });
 });
+
+app.post("/addUser", function(req,res){
+
+})
 
 app.listen(port, function(){
     console.log(`Server running at https://localhost:${port}`)

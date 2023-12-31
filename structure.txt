@@ -2,7 +2,6 @@ users (Array)
 |
 |--- [0] (Object)
      |
-     |--- bid: 1
      |--- userName: "Kartik"
      |--- bhakti: true
      |
@@ -27,3 +26,57 @@ users (Array)
                |--- current: false
                |--- brokenPast: 3
                |--- plastered: 5
+|
+|--- [1] (Object)
+     |
+     |--- userName: "Ujjwal"
+     |--- bhakti: false
+     |
+     |--- kidenys (Array)
+     |    |
+     |    |--- [0] (Object)
+     |    |    |
+     |    |    |--- healthy: true
+     |    |
+     |    |--- [1] (Object)
+     |         |
+     |         |--- healthy: true
+     |
+     |--- heart (Object)
+     |    |
+     |    |--- healthy: false
+     |
+     |--- Bones (Array)
+          |
+          |--- [0] (Object)
+               |
+               |--- current: true
+               |--- brokenPast: 2
+               |--- plastered: 3
+|
+|--- [2] (Object)
+     |
+     |--- userName: "Madhav"
+     |--- bhakti: true
+     |
+     |--- kidenys (Array)
+     |    |
+     |    |--- [0] (Object)
+     |    |    |
+     |    |    |--- healthy: true
+     |    |
+     |    |--- [1] (Object)
+     |         |
+     |         |--- healthy: true
+     |
+     |--- heart (Object)
+     |    |
+     |    |--- healthy: true
+     |
+     |--- Bones (Array)
+          |
+          |--- [0] (Object)
+               |
+               |--- current: false
+               |--- brokenPast: 0
+               |--- plastered: 0
