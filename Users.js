@@ -1,5 +1,4 @@
 var users = [{
-    bid: 1,
     userName: "Kartik",
     bhakti: true,
     kidenys: [{
@@ -11,12 +10,11 @@ var users = [{
         healthy: true
     },
     Bones:[{
-        currnt: false,
+        current: false,
         brokenPast: 3,
         plastered: 5
     }]
 },{
-    bid: 2,
     userName: "Ujjwal",
     bhakti: false,
     kidenys: [{
@@ -31,5 +29,21 @@ var users = [{
         current: true,
         brokenPast: 2,
         plastered: 3
+    }]
+},{
+    userName: "Madhav",
+    bhakti: true,
+    kidenys: [{
+        healthy: true
+    },{
+        healthy: true
+    }],
+    heart: {
+        healthy: true
+    },
+    Bones:[{
+        current: false,
+        brokenPast: 0,
+        plastered: 0
     }]
 }];
