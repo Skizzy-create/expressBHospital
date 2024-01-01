@@ -7,7 +7,6 @@ const port = 3000;
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-var total = 1.2;
 // basic structure 
 var users = [{
     userName: "Kartik",
@@ -72,24 +71,65 @@ function bones(id, health){
     }
 }
 
+function calculateMaxHealth(id) {
+    var maxHealth = 0;
+    const user = users[id];
+
+    // Bhakti contributes 20 to max health
+    if (user.bhakti) {
+        maxHealth += 20;
+    }
+
+    // Each healthy kidney contributes 30 to max health
+    for(let i = 0; i < user.kidenys.length; i++){
+        if(user.kidenys[i].healthy){
+            maxHealth += 30;
+        }
+    }
+
+    // Healthy heart contributes 30 to max health
+    if(user.heart.healthy){
+        maxHealth += 30;
+    }
+
+    // Bones contribute based on past breaks
+    maxHealth = bones(id, maxHealth);
+
+    // Subtract plastered bones
+    maxHealth = maxHealth - user.Bones[0].plastered * 2;
+
+    return maxHealth;
+}
+
+// Function to check if id is valid
+function isValidId(id) {
+    return id >= 0 && id < users.length;
+}
 
 // Routes
 
+// Welcome route
 app.get("/", function(req,res){
-    res.status(200).send(/*Welcome to Bhakti Hospial,
-    Here we will fix you both Spiritually and Medically.
-    That to for free*/);
+    res.status(200).send("Welcome to Bhakti Hospital, Here we will fix you both Spiritually and Medically. That too for free");
 });
 
+// Route to get user data
 app.get('/getUser', function(req,res){
     const id = req.query.id;
+    if (!isValidId(id)) {
+        return res.status(404).send('User not found');
+    }
     res.json(users[id]);
 });
 
+// Route to get health report of a user
 app.get('/healtReport', function(req,res){
-    // write a description of the health report route
-    var health = 0;
     const id = req.query.id;
+    if (!isValidId(id)) {
+        return res.status(404).send('User not found');
+    }
+    var health = 0;
+    const total = calculateMaxHealth(id);
     const user = users[id];
     const kideny = user.kidenys;
     const Bones = user.Bones[0]
@@ -112,18 +152,29 @@ app.get('/healtReport', function(req,res){
     }
     health = bones(id,health);
     health = health - bonesPlastered * 2;
-    const healtPercent = health / total;
+    const healtPercent = (health / total) * 100;
     res.json({health: health.toString(),
         HealthPercentage : healtPercent.toString()
         ,user: user
     });
 });
 
+// Route to add organ to a user
 app.post("/addOrgan", function(req,res){
     const id = req.body.id;
+    if (!isValidId(id)) {
+        return res.status(404).send('User not found');
+    }
     const organ = req.body.organ;
     const ishealthy = req.body.ishealthy;
     if(organ == "heart"){
+        //if there is no heart, then add it
+        if(!users[id].heart){
+            users[id].heart = {
+                healthy: ishealthy
+            };
+            res.send("Heart added to user " + id);
+        }
         users[id].heart.healthy = ishealthy;
     }else if(organ == "kidney"){
         users[id].kidenys.push({
@@ -135,10 +186,14 @@ app.post("/addOrgan", function(req,res){
     res.send(`${organ} added to user ${id} and is updated to ${ishealthy}`);
 })
 
+// Route to update organ of a user
 app.put("/updateOrgan", function(req,res){
     const id = req.body.id;
+    if (!isValidId(id)) {
+        return res.status(404).send('User not found');
+    }
     const organ = req.body.organ;
-    const ishealthy = true;
+    const ishealthy = req.body.ishealthy;
     if(organ == "heart"){
         users[id].heart.healthy = ishealthy;
     }else if(organ == "kidney"){
@@ -149,7 +204,22 @@ app.put("/updateOrgan", function(req,res){
     res.send(`${organ} updated to user ${id} and is updated to ${ishealthy}`);
 });
 
-
+// Route to remove all unhealthy organs of a user
+app.delete("/deleteOrgan", function(req,res){
+    const id = req.query.id;
+    if (!isValidId(id)) {
+        return res.status(404).send('User not found');
+    }
+    users[id].kidenys = users[id].kidenys.filter(function(kideny){
+        return kideny.healthy;
+    });
+    //cehcking if heart is healthy, and if not removing it
+    if(!users[id].heart.healthy){
+        users[id].heart = {};
+        res.send("Heart is removed, Get a replacment soon");
+    }
+    res.send("All unhealthy organs are removed");
+});
 
 app.listen(port, function(){
     console.log(`Server running at https://localhost:${port}`)
