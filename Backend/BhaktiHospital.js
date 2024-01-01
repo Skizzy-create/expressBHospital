@@ -3,6 +3,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+var total = 1.2;
 // basic structure 
 var users = [{
     userName: "Kartik",
@@ -24,9 +29,9 @@ var users = [{
     userName: "Ujjwal",
     bhakti: false,
     kidenys: [{
-        healthy: true
+        healthy: false
     },{
-        healthy: true    
+        healthy: false    
     }],
     heart: {
         healthy: false
@@ -67,8 +72,13 @@ function bones(id, health){
     }
 }
 
+
+// Routes
+
 app.get("/", function(req,res){
-    res.status(200).send("Welcome to Bhakti Hospial, Here we will fix you both Spiritually and Medically/ That to for free");
+    res.status(200).send(/*Welcome to Bhakti Hospial,
+    Here we will fix you both Spiritually and Medically.
+    That to for free*/);
 });
 
 app.get('/getUser', function(req,res){
@@ -77,10 +87,7 @@ app.get('/getUser', function(req,res){
 });
 
 app.get('/healtReport', function(req,res){
-    // the function is to calculate the health %age of the user,
-    // we have the data of kidney, heart and bones
-    // we will give 30 marks for each kidney, 50 for heart and 20 for bhakti, and 10 for bones
-    // for each broken bone in the past we will deduct 0.0048543689320388349514 marks
+    // write a description of the health report route
     var health = 0;
     const id = req.query.id;
     const user = users[id];
@@ -88,29 +95,59 @@ app.get('/healtReport', function(req,res){
     const Bones = user.Bones[0]
     const bonesCurrent = Bones.current;
     const bonesPlastered = Bones.plastered;
+    const heart = user.heart;
     if (user.bhakti){
         health += 20;
     }
     for(let i = 0; i < kideny.length; i++){
-        if(kideny[i]){
-            health += 50;
+        if(kideny[i] ){
+            health += 30;
         }
     }
     if(bonesCurrent){
         health -= 20;
     }
+    if(heart.healthy){
+        health += 30;
+    }
     health = bones(id,health);
     health = health - bonesPlastered * 2;
-    const healtPercent = health / 1.3;
+    const healtPercent = health / total;
     res.json({health: health.toString(),
         HealthPercentage : healtPercent.toString()
         ,user: user
     });
 });
 
-app.post("/addUser", function(req,res){
-
+app.post("/addOrgan", function(req,res){
+    const id = req.body.id;
+    const organ = req.body.organ;
+    const ishealthy = req.body.ishealthy;
+    if(organ == "heart"){
+        users[id].heart.healthy = ishealthy;
+    }else if(organ == "kidney"){
+        users[id].kidenys.push({
+            healthy: ishealthy
+        });
+    }else{
+        res.sendStatus(400).send("Invalid Data");
+    }
+    res.send(`${organ} added to user ${id} and is updated to ${ishealthy}`);
 })
+
+app.put("/updateOrgan", function(req,res){
+    const id = req.body.id;
+    const organ = req.body.organ;
+    const ishealthy = true;
+    if(organ == "heart"){
+        users[id].heart.healthy = ishealthy;
+    }else if(organ == "kidney"){
+        for(let i = 0; i < users[id].kidenys.length; i++){
+            users[id].kidenys[i].healthy = ishealthy;
+        }
+    }
+    res.send(`${organ} updated to user ${id} and is updated to ${ishealthy}`);
+});
 
 app.listen(port, function(){
     console.log(`Server running at https://localhost:${port}`)
