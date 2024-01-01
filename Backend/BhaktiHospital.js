@@ -34,7 +34,7 @@ var users = [{
         healthy: false    
     }],
     heart: {
-        healthy: false
+        healthy: true
     },
     Bones:[{
         current: true,
@@ -100,7 +100,7 @@ app.get('/healtReport', function(req,res){
         health += 20;
     }
     for(let i = 0; i < kideny.length; i++){
-        if(kideny[i] ){
+        if(kideny[i].healthy){
             health += 30;
         }
     }
@@ -148,6 +148,8 @@ app.put("/updateOrgan", function(req,res){
     }
     res.send(`${organ} updated to user ${id} and is updated to ${ishealthy}`);
 });
+
+
 
 app.listen(port, function(){
     console.log(`Server running at https://localhost:${port}`)
