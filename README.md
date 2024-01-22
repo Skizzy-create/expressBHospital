@@ -1,13 +1,9 @@
 # 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
 
-[![GitHub stars](https://img.shields.io/github/stars/Skizzy-create/expressBHospital?style=social)](https://github.com/Skizzy-create/expressBHospital)
-[![GitHub forks](https://img.shields.io/github/forks/Skizzy-create/expressBHospital?style=social)](https://github.com/Skizzy-create/expressBHospital)
-[![GitHub issues](https://img.shields.io/github/issues/Skizzy-create/expressBHospital)](https://github.com/Skizzy-create/expressBHospital/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/Skizzy-create/expressBHospital)](https://github.com/Skizzy-create/expressBHospital/pulls)
-[![GitHub commits](https://img.shields.io/github/commits-since/Skizzy-create/expressBHospital/latest)](https://github.com/Skizzy-create/expressBHospital/commits)
-[![GitHub file size](https://img.shields.io/github/repo-size/Skizzy-create/expressBHospital)](https://github.com/Skizzy-create/expressBHospital)
+[![GitHub commits](https://img.shields.io/github/commits-since/Skizzy-create/expressBHospital/latest.svg)](https://github.com/Skizzy-create/expressBHospital/commits)
+[![GitHub file size](https://img.shields.io/github/size/Skizzy-create/expressBHospital/README.md.svg)](https://github.com/Skizzy-create/expressBHospital/blob/main/README.md)
+[![GitHub license](https://img.shields.io/github/license/Skizzy-create/expressBHospital.svg)](https://github.com/Skizzy-create/expressBHospital/blob/main/LICENSE)
 
-[![GitHub](https://img.shields.io/github/license/Skizzy-create/expressBHospital)](https://github.com/Skizzy-create/expressBHospital/blob/main/LICENSE)
 
 Welcome to the BHospital project! 👋 This is a simple Express.js server that manages user health data. It provides several routes to interact with the data, including retrieving user data, generating a health report, updating organ health, and deleting unhealthy organs.
 
