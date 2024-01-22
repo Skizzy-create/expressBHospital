@@ -91,13 +91,10 @@ function calculateMaxHealth(id) {
     return maxHealth;
 }
 
-function isValidId(id) {
-    return id >= 0 && id < users.length;
-}
+
 
 module.exports = {
     users,
     bones,
     calculateMaxHealth,
-    isValidId
 };
