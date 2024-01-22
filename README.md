@@ -11,12 +11,25 @@ Welcome to the BHospital project! 👋 This is a simple Express.js server that m
 ## 📂 Project Structure
 
 ```
-/myapp
-    server.js
-    /routes
-        userRoutes.js
-    /data
-        userData.js
++---expressBHospital
+|   |   .gitattributes
+|   |   LICENSE
+|   |   README.md
+|   |   structure.txt
+|   |
+|   \---Backend
+|       |   server.js
+|       |
+|       +---data
+|       |       userData.js
+|       |
+|       +---routes
+|       |       userRoutes.js
+|       |
+|       \---utility
+|               middlewares.js
+|
+
 ```
 
 ## 🛠️ Installation
