@@ -1,52 +1,4 @@
-var users = [{
-    userName: "Kartik",
-    bhakti: true,
-    kidenys: [{
-        healthy: true
-    },{
-        healthy: true    
-    }],
-    heart: {
-        healthy: true
-    },
-    Bones:[{
-        current: false,
-        brokenPast: 3,
-        plastered: 5
-    }]
-},{
-    userName: "Ujjwal",
-    bhakti: false,
-    kidenys: [{
-        healthy: false
-    },{
-        healthy: false    
-    }],
-    heart: {
-        healthy: true
-    },
-    Bones:[{
-        current: true,
-        brokenPast: 2,
-        plastered: 3
-    }]
-},{
-    userName: "Madhav",
-    bhakti: true,
-    kidenys: [{
-        healthy: true
-    },{
-        healthy: true
-    }],
-    heart: {
-        healthy: true
-    },
-    Bones:[{
-        current: false,
-        brokenPast: 0,
-        plastered: 0
-    }]
-}];
+const { users } = require('./data.js');
 
 function bones(id, health){
     const bones = users[id].Bones[0]
@@ -64,15 +16,17 @@ function bones(id, health){
 function calculateMaxHealth(id) {
     var maxHealth = 0;
     const user = users[id];
-
+    if (id < 0 || id >= users.length) {
+        throw new Error('User not found');
+    }
     // Bhakti contributes 20 to max health
     if (user.bhakti) {
         maxHealth += 20;
     }
 
     // Each healthy kidney contributes 30 to max health
-    for(let i = 0; i < user.kidenys.length; i++){
-        if(user.kidenys[i].healthy){
+    for(let i = 0; i < user.kidneys.length; i++){
+        if(user.kidneys[i].healthy){
             maxHealth += 30;
         }
     }
@@ -94,7 +48,6 @@ function calculateMaxHealth(id) {
 
 
 module.exports = {
-    users,
     bones,
     calculateMaxHealth,
 };

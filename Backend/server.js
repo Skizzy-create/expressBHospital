@@ -10,6 +10,12 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use('/', userRoutes);
 
+// global catch
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.status(500).json({msg:'Something broke!'});
+});
+
 app.listen(port, function(){
     console.log(`Server running at https://localhost:${port}`)
 });
