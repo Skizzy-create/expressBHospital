@@ -29,13 +29,15 @@ So, come on in and explore the Bhakti Hospital - where JavaScript, Express.js, a
 |       |   server.js
 |       |
 |       +---data
-|       |       userData.js
+|       |   |   data.js
+|       |   |   userData.js
 |       |
 |       +---routes
-|       |       userRoutes.js
+|       |   |   userRoutes.js
 |       |
 |       \---utility
-|               middlewares.js
+|           |   middlewares.js
+|           |   schemas.js
 |
 
 ```
