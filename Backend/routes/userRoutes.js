@@ -63,8 +63,9 @@ router.get('/healtReport', function(req,res){
     health = health - bonesPlastered * 2;
     const healtPercent = (health / total) * 100;
     res.json({health: health.toString(),
-        HealthPercentage : healtPercent.toString()
-        ,user: user
+        HealthPercentage : healtPercent.toString(),
+        maxHealth: total.toString(),
+        user: user
     });
 });
 
@@ -130,9 +131,11 @@ router.post('/addUser', (req, res) => {
     const response2 = schema.userSchema.safeParse(user);
     if(response1.success && response2.success){
         users.push(user);
+        userNames.push(userName);
         res.status(200).json({
             msg: "User added successfully",
-            user: user
+            user: user,
+            userName: userName
         });
     }else{
         error = response1.error || response2.error;

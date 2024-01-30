@@ -26,9 +26,7 @@ function calculateMaxHealth(id) {
 
     // Each healthy kidney contributes 30 to max health
     for(let i = 0; i < user.kidneys.length; i++){
-        if(user.kidneys[i].healthy){
-            maxHealth += 30;
-        }
+        maxHealth += 30;
     }
 
     // Healthy heart contributes 30 to max health
