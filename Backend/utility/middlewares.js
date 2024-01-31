@@ -5,11 +5,13 @@ const express = require('express');
 const { bones, calculateMaxHealth } = require('../data/userData');
 const { users } = require('../data/data.js');
 
+
 function opSelcet(req, op){
     let id;
-    if(op == 'addOrgan'){
+    if(op == 'addOrgan' || op == 'signin'){
         id = req.body.id;
-        console.log("addOrgan called -using alternative read in middelware");
+        console.log(id);
+        console.log(`${op} called -using alternative read in middelware`);
     }else{
         id = req.query.id;
     }
@@ -29,7 +31,26 @@ function userValid(req, res, next){
             res.status(411).json({crash :"User not found"});
         }
     }
-}                     
+}                  
+
+// making userValid with find function
+// function userValidFind(req, res, next){
+//     const op = req.query.op;
+//     if(op == 'addUser'){
+//         console.log("addUser called -suppressing userValid check");
+//         next();
+//     } else {
+//         const id = opSelcet(req, op);
+//         const user = users.find(function (user) {
+//              user.id == id
+//             });
+//         if(user){
+//             next();
+//         } else {
+//             res.status(411).json({crash :"User not found"});
+//         }
+//     }
+// }
 
 function isValidIdState(req, res, next){
     const op = req.query.op;
