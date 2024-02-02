@@ -3,32 +3,55 @@
 
 const express = require('express');
 const { bones, calculateMaxHealth } = require('../data/userData');
-const { users } = require('../data/data.js');
+const { users, userNames } = require('../data/data.js');
 
 
 function opSelcet(req, op){
     let id;
-    if(op == 'addOrgan' || op == 'signin'){
+    if(op == 'addOrgan'){
         id = req.body.id;
         console.log(id);
-        console.log(`${op} called -using alternative read in middelware`);
+        console.log("addUser called -using alternative read in middelware");
     }else{
         id = req.query.id;
     }
     return id;
 }
 
+function userPasswordValid(username, password){
+    const user = userNames.find(function (user) {
+        return user.userName == username && user.password == password;
+    });
+    if(user){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function userValid(req, res, next){
     const op = req.query.op;
-    if(op == 'addUser'){
-        console.log("addUser called -suppressing userValid check");
+    if(op == 'addUser' || op == 'users'){
+        console.log(`${op} called -suppressing userValid check`);
         next();
+    // is now obsolete
+    // }else if(op == 'signin'){
+    //     const userName = req.body.userName;
+    //     const password = req.body.password.toString();
+    //     if(userPasswordValid(userName, password)){
+    //         console.log("userValid called -user found");
+    //         next();
+    //     } else {
+    //         console.log("userValid called -user not found");
+    //         res.status(403).json({crash :"User not found"});
+    //     }
     } else {
         const id = opSelcet(req, op);
         if(id >= 0 && id < users.length){
             next();
         } else {
-            res.status(411).json({crash :"User not found"});
+            console.log("userValid called -user not found");
+            res.status(403).json({crash :"User not found"});
         }
     }
 }                  
@@ -55,8 +78,8 @@ function userValid(req, res, next){
 function isValidIdState(req, res, next){
     const op = req.query.op;
     const ishealthy = req.body.ishealthy; // or req.query.ishealthy, depending on your setup
-    if(op == 'addUser'){
-        console.log("addUser called -suppressing isValidIdState check")
+    if(op == 'addUser' || op == 'signin' || op == 'users'){
+        console.log(`${op} called -suppressing userValid check`);
         next();
     }
     else if(ishealthy == true || ishealthy == false){
@@ -70,8 +93,8 @@ function isValidIdState(req, res, next){
 function validOrgan(req, res, next){
     const op = req.query.op;
     const organ = req.body.organ; // or req.query.organ, depending on your setup
-    if(op == 'addUser'){
-        console.log("addUser called -suppressing validOrgan check")
+    if(op == 'addUser' || op == 'signin' || op == 'users'){
+        console.log(`${op} called -suppressing userValid check`);
         next();
     }
     else if(organ == "heart" || organ == "kidney" || organ == "bones"){
