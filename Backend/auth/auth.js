@@ -26,8 +26,8 @@ router.post("/signin", async function (req, res) {
         password: password,
         email: email,
     });
-    const existingUser = await userDBschema.find({email: email});
-    if(existingUser == []){
+    const existingUser = await userDBschema.findOne({email: email});
+    if(existingUser != {}){
         res.status(400).json({
             error:"User already exists"
         });

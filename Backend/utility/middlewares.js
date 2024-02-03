@@ -34,7 +34,7 @@ function userValid(req, res, next){
     if(op == 'addUser' || op == 'users'){
         console.log(`${op} called -suppressing userValid check`);
         next();
-    // is now obsolete
+    // is now obsolete need to add to check for user and password from the mongoDB
     // }else if(op == 'signin'){
     //     const userName = req.body.userName;
     //     const password = req.body.password.toString();
