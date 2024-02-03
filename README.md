@@ -115,13 +115,7 @@ Backend
 
 ## 🤝 Contributing
 
-Contributions are welcome. Please fork the repository and create a pull request with your changes. This marks the last major commit to the project. From here on, only minor updates are anticipated.
-
-The decision to limit further major updates is driven by the realization that the current architecture and project structure have become obsolete. The migration from an in-memory database to MongoDB has necessitated a significant amount of work, much of which could be considered unnecessary given the evolution of the project.
-
-However, instead of overhauling everything, I've chosen to preserve this stage of the project as a testament to my learning journey. It serves as a tangible record of my progression from using an in-memory database to adopting MongoDB.
-
-While this may be the end of major updates, the project will continue to evolve through minor enhancements, carrying with it the lessons learned from this important phase of its development.
+Contributions are welcome. Please fork the repository and create a pull request with your changes.
 
 ## 📄 License
 
