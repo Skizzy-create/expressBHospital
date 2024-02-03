@@ -1,7 +1,5 @@
 # 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
 
-# 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
-
 <div style="display: flex; justify-content: space-between;">
     <img src="backendimg1.jpeg" alt="Image 1" width="400"/>
     <img src="backendimg2.jpeg" alt="Image 2" width="400"/>
