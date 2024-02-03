@@ -6,8 +6,8 @@ const schema = require("../utility/schemas");
 const { users, userNames } = require("../data/data");
 const { mongooseConnectionString, jwtSecret } = require("../utility/constants");
 const { userValid, isValidIdState, countRequests, countTime } = require("../utility/middlewares");
-const {connect, assignValues, userDBschema, saveUser } = require("../database/dataBaseFun");
-
+const { connect, assignValues, userDBschema, saveUser } = require("../database/dataBaseFun");
+const { userValidDB } = require("../utility/middelwaresDB");
 router.use(express.json());
 router.use(countRequests);
 router.use(countTime);
@@ -27,7 +27,7 @@ router.post("/signin", async function (req, res) {
         email: email,
     });
     const existingUser = await userDBschema.findOne({email: email});
-    if(existingUser != {}){
+    if(existingUser != null){
         res.status(400).json({
             error:"User already exists"
         });
@@ -63,7 +63,7 @@ function userWithOutThemSelves(userName) {
     return usersWithoutTS;
 }
 
-router.get("/users", function (req, res) {
+router.get("/users", userValidDB, function (req, res) {
     console.log("users route called");
     const token = req.headers.authorization;
     try {

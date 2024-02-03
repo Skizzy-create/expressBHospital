@@ -24,6 +24,25 @@ const userDBschema = mongoose.model('Users', {
     email: String
 });
 
+const userHealthSchema = new mongoose.Schema({
+    userName: String,
+    bhakti: Boolean,
+    kidneys: [{
+        healthy: Boolean
+    }],
+    heart: {
+        healthy: Boolean
+    },
+    Bones: [{
+        current: Boolean,
+        brokenPast: Number,
+        plastered: Number
+    }]
+});
+
+const UserHealth = mongoose.model('UserHealth', userHealthSchema);
+
+
 function assignValues(userNameR, passwordR, emailR){
     const check = userNamesSchema.safeParse({
         userName: userNameR,
