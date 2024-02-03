@@ -1,7 +1,9 @@
 # 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
 
-[![GitHub commits](https://img.shields.io/github/commits-since/Skizzy-create/expressBHospital/latest.svg)](https://github.com/Skizzy-create/expressBHospital/commits)
-[![GitHub file size](https://img.shields.io/github/size/Skizzy-create/expressBHospital/README.md.svg)](https://github.com/Skizzy-create/expressBHospital/blob/main/README.md)
+![MongoDB](https://img.shields.io/badge/MongoDB-v4.4.5-green)
+![Zod](https://img.shields.io/badge/Zod-v3.7.9-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![Express.js](https://img.shields.io/badge/Express.js-v4.17.1-lightgrey)
 [![GitHub license](https://img.shields.io/github/license/Skizzy-create/expressBHospital.svg)](https://github.com/Skizzy-create/expressBHospital/blob/main/LICENSE)
 
 🚀 Welcome to the **Bhakti Hospital** - a one-of-a-kind, spiritually-infused, digitally-powered health center! 🏥
