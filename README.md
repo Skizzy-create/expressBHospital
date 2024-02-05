@@ -1,9 +1,5 @@
 # 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
 
-<div style="display: flex; justify-content: space-between;">
-    <img src="backendimg1.jpeg" alt="Image 1" width="400"/>
-    <img src="backendimg2.jpeg" alt="Image 2" width="400"/>
-</div>
 ## 🏁 End of Project
 
 <details>
@@ -14,6 +10,11 @@
 🚨 **Project Evolution**: The development journey has seen a transition from an in-memory database to MongoDB, symbolizing a pivotal learning phase. While this is the end of major updates, the project will continue to evolve through minor enhancements, carrying forward the lessons learned during this crucial development period.
 
 </details>
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="backendimg1.jpeg" alt="Image 1" width="400"/>
+    <img src="backendimg2.jpeg" alt="Image 2" width="400"/>
+</div>
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-v4.4.5-green)
 ![Zod](https://img.shields.io/badge/Zod-v3.7.9-blue)
