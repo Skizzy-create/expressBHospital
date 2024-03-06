@@ -1,4 +1,4 @@
-# 🏥 Harkirat's BHospital Project - Cohort 0 - 100 Week 2.5 Assignment 🚀
+# 🏥 BHospital Project🚀
 
 ## 🏁 End of Project
 
