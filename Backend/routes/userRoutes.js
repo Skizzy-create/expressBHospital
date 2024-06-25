@@ -11,31 +11,31 @@ router.use(countRequests);
 router.use(countTime);
 
 // we can manually add the middelwares
-router.get("/", countRequests, countTime, function(req,res){
+router.get("/", countRequests, countTime, function (req, res) {
     res.status(200).send("Welcome to Bhakti Hospital, Here we will fix you both Spiritually and Medically. That too for free");
 });
 
-router.get("/schema", function(req, res){
-    const kidneys = JSON.parse(req.query.kidneys)   ;
+router.get("/schema", function (req, res) {
+    const kidneys = JSON.parse(req.query.kidneys); // this is to get the kidneys from the query, query is a the part of the url after the ?
     const response = schema.kidneysSchema.safeParse(kidneys);
     res.json({
-        error : response,
-        msg : "Will always return error"
+        error: response,
+        msg: "Will always return error"
     });
 });
 
-router.get("/getAllusers", function(req,res){
+router.get("/getAllusers", function (req, res) {
     res.status(200).json(users);
 });
 
 router.use(userValid);
 
-router.get('/getUser', function(req,res){
+router.get('/getUser', function (req, res) {
     const id = req.query.id;
     res.json(users[id]);
 });
 
-router.get('/healtReport', function(req,res){
+router.get('/healtReport', function (req, res) {
     const id = req.query.id;
     var health = 0;
     const total = calculateMaxHealth(id);
@@ -45,40 +45,41 @@ router.get('/healtReport', function(req,res){
     const bonesCurrent = Bones.current;
     const bonesPlastered = Bones.plastered;
     const heart = user.heart;
-    if (user.bhakti){
+    if (user.bhakti) {
         health += 20;
     }
-    for(let i = 0; i < kidney.length; i++){
-        if(kidney[i].healthy){
+    for (let i = 0; i < kidney.length; i++) {
+        if (kidney[i].healthy) {
             health += 30;
         }
     }
-    if(bonesCurrent){
+    if (bonesCurrent) {
         health -= 20;
     }
-    if(heart.healthy){
+    if (heart.healthy) {
         health += 30;
     }
-    health = bones(id,health);
+    health = bones(id, health);
     health = health - bonesPlastered * 2;
     const healtPercent = (health / total) * 100;
-    res.json({health: health.toString(),
-        HealthPercentage : healtPercent.toString(),
+    res.json({
+        health: health.toString(),
+        HealthPercentage: healtPercent.toString(),
         maxHealth: total.toString(),
         user: user
     });
 });
 
-router.delete("/deleteOrgan", function(req,res){
+router.delete("/deleteOrgan", function (req, res) {
     const id = req.query.id;
     if (!isValidId(id)) {
         return res.status(404).send('Invalid ID');
     }
-    users[id].kidneys= users[id].kidenys.filter(function(kideny){
+    users[id].kidneys = users[id].kidenys.filter(function (kideny) {
         return kideny.healthy;
     });
     //cehcking if heart is healthy, and if not removing it
-    if(!users[id].heart.healthy){
+    if (!users[id].heart.healthy) {
         users[id].heart = {};
         res.send("Heart is removed, Get a replacment soon");
     }
@@ -88,13 +89,13 @@ router.delete("/deleteOrgan", function(req,res){
 router.use(validOrgan);
 
 // adding good organs
-router.put("/updateOrgan", function(req,res){
+router.put("/updateOrgan", function (req, res) {
     const id = req.body.id;
     const organ = req.body.organ;
-    if(organ == "heart"){
+    if (organ == "heart") {
         users[id].heart.healthy = true;
-    }else if(organ == "kidney"){
-        for(let i = 0; i < users[id].kidenys.length; i++){
+    } else if (organ == "kidney") {
+        for (let i = 0; i < users[id].kidenys.length; i++) {
             users[id].kidenys[i].healthy = true;
         }
     }
@@ -103,16 +104,16 @@ router.put("/updateOrgan", function(req,res){
 
 router.use(isValidIdState);
 
-router.post("/addOrgan", function(req, res) {
+router.post("/addOrgan", function (req, res) {
     const id = req.body.id;
     const organ = req.body.organ;
     const ishealthy = req.body.ishealthy;
     // adding new organ
-    if(organ == "heart"){
+    if (organ == "heart") {
         users[id].heart = {
             healthy: ishealthy
         };
-    }else if(organ == "kidney"){
+    } else if (organ == "kidney") {
         users[id].kidneys.push({
             healthy: ishealthy
         });
@@ -129,7 +130,7 @@ router.post('/addUser', (req, res) => {
     const userName = req.body.userName;
     const response1 = schema.userNamesSchema.safeParse(userName);
     const response2 = schema.userSchema.safeParse(user);
-    if(response1.success && response2.success){
+    if (response1.success && response2.success) {
         users.push(user);
         userNames.push(userName);
         res.status(200).json({
@@ -137,7 +138,7 @@ router.post('/addUser', (req, res) => {
             user: user,
             userName: userName
         });
-    }else{
+    } else {
         error = response1.error || response2.error;
         res.status(411).json({
             msg: "Invalid Inputs",

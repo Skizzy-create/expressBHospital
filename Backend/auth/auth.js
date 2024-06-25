@@ -20,16 +20,15 @@ router.post("/signin", async function (req, res) {
     const userName = req.body.userName;
     const password = req.body.password.toString();
     const email = req.body.email;
-    const check = schema.userNamesSchema
-    .safeParse({
+    const check = schema.userNamesSchema.safeParse({
         userName: userName,
         password: password,
         email: email,
     });
-    const existingUser = await userDBschema.findOne({email: email});
-    if(existingUser != null){
+    const existingUser = await userDBschema.findOne({ email: email });
+    if (existingUser != null) {
         res.status(400).json({
-            error:"User already exists"
+            error: "User already exists"
         });
         console.log("error: User already exists\nexistingUser:", existingUser);
         return;
@@ -37,10 +36,10 @@ router.post("/signin", async function (req, res) {
     if (check.success) {
         var token = jwt.sign({ userName: userName }, jwtSecret);
         console.log("singin called");
-        const {check, user} = assignValues(userName, password, email);
-        if(check.success){
+        const { check, user } = assignValues(userName, password, email);
+        if (check.success) {
             saveUser(user);
-        }else{
+        } else {
             console.log("Failed to save user:");
         }
         return res.json({
@@ -58,7 +57,7 @@ router.post("/signin", async function (req, res) {
 
 function userWithOutThemSelves(userName) {
     const usersWithoutTS = userNames.filter((user) => {
-    return user.userName !== userName;
+        return user.userName !== userName;
     });
     return usersWithoutTS;
 }
