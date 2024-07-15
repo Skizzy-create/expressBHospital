@@ -22,7 +22,13 @@
 ![Express.js](https://img.shields.io/badge/Express.js-v4.17.1-lightgrey)
 [![GitHub license](https://img.shields.io/github/license/Skizzy-create/expressBHospital.svg)](https://github.com/Skizzy-create/expressBHospital/blob/main/LICENSE)
 
-🚀 Welcome to the **Bhakti Hospital** - a one-of-a-kind, spiritually-infused, digitally-powered health center! 🏥
+## 🌟 Live Project
+
+🎉 This is my very first backend project! It's now live and you can check it out here: [Bhakti Hospital](https://expressbhospital.onrender.com). Your feedback and support are greatly appreciated! 🌎
+
+## 🚀 Project Overview
+
+Welcome to the **Bhakti Hospital** - a one-of-a-kind, spiritually-infused, digitally-powered health center! 🏥
 
 This project is a testament to the power of JavaScript, showcasing its versatility in creating a unique health management system. It's not just about physical health but also about spiritual health (bhakti) - because we believe in holistic healing! 💖
 
@@ -32,45 +38,53 @@ Data validation is a breeze with **Zod**. We've defined schemas for every piece 
 
 Our middleware functions are the unsung heroes, quietly validating users and organs, counting requests, and even selecting operations. They're like the backstage crew that keeps the show running smoothly. 🎭
 
-So, come on in and explore the Bhakti Hospital - where JavaScript, Express.js, and Zod come together to create a health management system like no other! 🎉
-
 ## 📂 Project Structure
 
-```
-Backend
+```plaintext
+expressBHospital
 │
-├── auth
-│   └── auth.js
+├── Backend
+│   ├── auth
+│   │   └── auth.js
+│   ├── data
+│   │   ├── data.js
+│   │   └── userData.js
+│   ├── routes
+│   │   └── userRoutes.js
+│   ├── utility
+│   │   ├── constants.js
+│   │   ├── middlewares.js
+│   │   ├── middlewaresDB.js
+│   │   └── schemas.js
+│   └── server.js
 │
-├── data
-│   ├── data.js
-│   └── userData.js
-│
-├── database.js
-│   └── dataBaseFun.js
-│
-├── routes
-│   └── userRoutes.js
-│
-├── utility
-│   ├── constants.js
-│   ├── middlewares.js
-│   ├── middlewaresDB.js
-│   └── schemas.js
-│
-└── server.js
-
+└── Frontend
+    ├── index.html
+    ├── styles.css
+    └── scripts.js
 ```
 
 ## 🛠️ Installation
 
-1. Clone the repository to your local machine using `git clone https://github.com/Skizzy-create/expressBHospital.git`.
-2. Navigate to the project directory.
-3. Install the required dependencies with `npm install`.
+1. Clone the repository to your local machine using:
+    ```sh
+    git clone https://github.com/Skizzy-create/expressBHospital.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd expressBHospital
+    ```
+3. Install the required dependencies with:
+    ```sh
+    npm install
+    ```
 
 ## 🚀 Usage
 
-1. Start the server using `nodemon server.js`.
+1. Start the server using:
+    ```sh
+    nodemon server.js
+    ```
 2. The server will start running at `https://localhost:3000`.
 
 ## 🚦 Routes and Functionalities
@@ -87,7 +101,7 @@ Backend
 
 ### 3. Health Report
 
-- **Route:** `GET /healtReport`
+- **Route:** `GET /healthReport`
 - **Description:** Generates a health report for a user based on the provided `id` query parameter. The health report includes the health points and the percentage of fitness.
 
 ### 4. Update Organ Health
@@ -125,3 +139,7 @@ Contributions are welcome. Please fork the repository and create a pull request 
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+---
+
+Feel free to review and let me know if any additional modifications are needed!

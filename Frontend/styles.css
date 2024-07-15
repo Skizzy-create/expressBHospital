@@ -1,0 +1,201 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background: var(--background);
+    color: var(--text-color);
+    transition: background 0.5s, color 0.5s;
+}
+
+:root {
+    --background: #f5f7fa;
+    --text-color: #333;
+    --header-background: #4CAF50;
+    --header-text-color: #fff;
+    --section-background: #fff;
+    --section-shadow: rgba(0, 0, 0, 0.1);
+    --feature-background: #4CAF50;
+    --feature-text-color: #fff;
+    --footer-background: #4CAF50;
+    --footer-text-color: #fff;
+    --table-border: #ddd;
+    --link-color: #006103;
+    --button-background: #006103;
+    /* Match with Toggle Theme button */
+    /* New color for the light mode button */
+}
+
+.dark-theme {
+    --background: #333;
+    --text-color: #f5f7fa;
+    --header-background: #222;
+    --header-text-color: #f5f7fa;
+    --section-background: #444;
+    --section-shadow: rgba(0, 0, 0, 0.5);
+    --feature-background: #555;
+    --feature-text-color: #f5f7fa;
+    --footer-background: #222;
+    --footer-text-color: #f5f7fa;
+    --table-border: #555;
+    --link-color: #ffa500;
+    --button-background: #ffa500;
+    /* Adjusted color for dark mode */
+}
+
+header {
+    background: var(--header-background);
+    color: var(--header-text-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--section-shadow);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-toggle {
+    padding: 10px 20px;
+    border: none;
+    background: var(--button-background);
+    color: var(--feature-text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: var(--link-color);
+}
+
+h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--section-background);
+    box-shadow: 0 4px 8px var(--section-shadow);
+    border-radius: 10px;
+    animation: fadeIn 1.5s ease-in-out;
+    transition: background 0.5s, box-shadow 0.5s;
+}
+
+.intro,
+.features,
+.routes {
+    margin-bottom: 20px;
+}
+
+.intro h2,
+.features h2,
+.routes h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: var(--link-color);
+    transition: color 0.5s;
+}
+
+.intro p {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    background: var(--feature-background);
+    color: var(--feature-text-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--section-shadow);
+    transition: transform 0.3s ease-in-out, background 0.5s, color 0.5s, box-shadow 0.5s;
+}
+
+.features li:hover {
+    transform: translateY(-5px);
+    background: var(--link-color);
+    color: var(--header-text-color);
+}
+
+.routes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.routes table,
+.routes th,
+.routes td {
+    border: 1px solid var(--table-border);
+    transition: border 0.5s;
+}
+
+.routes th,
+.routes td {
+    padding: 10px;
+    text-align: left;
+}
+
+.routes th {
+    background: var(--feature-background);
+    color: var(--feature-text-color);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: var(--footer-background);
+    color: var(--footer-text-color);
+    box-shadow: 0 -4px 8px var(--section-shadow);
+    border-radius: 0 0 10px 10px;
+    transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+}
+
+.action-button {
+    padding: 10px 20px;
+    background: var(--button-background);
+    color: var(--feature-text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.action-button:hover {
+    background: var(--link-color);
+    color: var(--header-text-color);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

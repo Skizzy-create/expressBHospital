@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bhakti Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Bhakti Hospital</h1>
+        <div class="header-buttons">
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+            <div id="githubButton" class="action-button" onclick="goToGitHub()">GitHub</div>
+        </div>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>Holistic Health Management</h2>
+            <p>
+                Discover a unique blend of physical and spiritual health management at Bhakti Hospital. Our state-of-the-art system leverages the power of JavaScript, Express.js, and MongoDB to deliver exceptional care and insights into your well-being.
+            </p>
+        </section>
+        <section class="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Comprehensive user health management</li>
+                <li>Real-time health updates</li>
+                <li>Spiritual and physical health integration</li>
+                <li>Secure authentication and data validation</li>
+            </ul>
+        </section>
+        <section class="routes">
+            <h2>Available Routes</h2>
+            <table>
+                <tr>
+                    <th>Route</th>
+                    <th>Method</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>/</td>
+                    <td>GET</td>
+                    <td>Welcome route that sends a welcome message.</td>
+                </tr>
+                <tr>
+                    <td>/getUser</td>
+                    <td>GET</td>
+                    <td>Retrieves user data based on the provided id query parameter.</td>
+                </tr>
+                <tr>
+                    <td>/healthReport</td>
+                    <td>GET</td>
+                    <td>Generates a health report for a user based on the provided id query parameter.</td>
+                </tr>
+                <tr>
+                    <td>/updateOrgan</td>
+                    <td>PUT</td>
+                    <td>Updates the health status of an organ for a user. Requires id, organ, and ishealthy in the request body.</td>
+                </tr>
+                <tr>
+                    <td>/deleteOrgan</td>
+                    <td>DELETE</td>
+                    <td>Removes all unhealthy organs for a user based on the provided id query parameter.</td>
+                </tr>
+                <tr>
+                    <td>/addOrgan</td>
+                    <td>POST</td>
+                    <td>Adds a new organ (heart or kidney) to a user. Requires id, organ, and ishealthy in the request body.</td>
+                </tr>
+                <tr>
+                    <td>/auth/signin</td>
+                    <td>POST</td>
+                    <td>Allows users to sign in. Validates user information, creates a JWT token, and saves the user to the MongoDB database.</td>
+                </tr>
+                <tr>
+                    <td>/auth/users</td>
+                    <td>GET</td>
+                    <td>Retrieves user information for authenticated users. Uses JWT token for authentication.</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Bhakti Hospital. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function goToGitHub() {
+            window.location.href = 'https://github.com/Skizzy-create/expressBHospital';
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+    </script>
+</body>
+</html>

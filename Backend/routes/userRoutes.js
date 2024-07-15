@@ -10,10 +10,10 @@ router.use(express.json());
 router.use(countRequests);
 router.use(countTime);
 
-// we can manually add the middelwares
-router.get("/", countRequests, countTime, function (req, res) {
-    res.status(200).send("Welcome to Bhakti Hospital, Here we will fix you both Spiritually and Medically. That too for free");
-});
+// // we can manually add the middelwares
+// router.get("/", countRequests, countTime, function (req, res) {
+//     res.status(200).send("Welcome to Bhakti Hospital, Here we will fix you both Spiritually and Medically. That too for free");
+// });
 
 router.get("/schema", function (req, res) {
     const kidneys = JSON.parse(req.query.kidneys); // this is to get the kidneys from the query, query is a the part of the url after the ?
